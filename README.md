@@ -9,16 +9,8 @@ Funcionalidades
  Listar tareas
  Marcar tareas como completadas
  Eliminar tareas
-
- Tecnologías utilizadas
-
- Python
-
- Descripción
-
-El sistema permite al usuario administrar una lista de tareas, donde cada tarea tiene un nombre y un estado (Pendiente o Completada).
-
-Autor
-
-Estudiante de Analista Programador
+ Tecnologías utilizadas:
+1 Python
+2 Descripción
+3 El sistema permite al usuario administrar una lista de tareas, donde cada tarea tiene un nombre y un estado (Pendiente o Completada).
 
