@@ -1,12 +1,14 @@
-# Lista donde se almaceranan las tareas
+
+
+
 tareas = []
 
-# Función para agregar una tarea
 def agregar_tarea():
-    nombre = input("Ingrese el nombre de la tarea: ")
 
-    if nombre.strip() == "":
-        print("El nombre de la tarea no puede estar vacío.")
+    nombre = input("Ingrese el nombre de la tarea: ").strip()
+
+    if nombre == "":
+        print("El nombre de la tarea no puede estar vacio.")
         return
 
     tarea = {
@@ -15,25 +17,29 @@ def agregar_tarea():
     }
 
     tareas.append(tarea)
-    print("Tarea agregada correctamente.")
 
-# Función para listar las tareas
+    print("La tarea fue agregada correctamente.")
+
+# Función para listar tareas
 def listar_tareas():
+
     if len(tareas) == 0:
-        print("No hay tareas registradas.")
+        print("\nNo existen tareas registradas.")
         return
 
-    print("\n===== LISTA DE TAREAS =====")
+    print("\n========== TAREASS ==========")
 
     for i in range(len(tareas)):
-        print(f"{i + 1}. {tareas[i]['nombre']} - {tareas[i]['estado']}")
+        print(f"{i+1}. {tareas[i]['nombre']} - {tareas[i]['estado']}")
 
-
+# Menú principal
 def menu():
 
     while True:
 
-        print("\n===== SISTEMA DE REGISTRO DE TAREAS =====")
+        print("\n===================================")
+        print(" SISTEMA DE REGISTRO DE TAREAS")
+        print("===================================")
         print("1. Agregar tarea")
         print("2. Listar tareas")
         print("3. Salir")
@@ -41,17 +47,21 @@ def menu():
         opcion = input("Seleccione una opcion: ")
 
         if opcion == "1":
+
             agregar_tarea()
 
         elif opcion == "2":
+
             listar_tareas()
 
         elif opcion == "3":
-            print("Gracias por utilizar el sistema.")
+
+            print("Hasta luego.")
             break
 
         else:
-            print("Opcion invalida.")
 
+            print("Opción invalida.")
 
+# Inicio del programa
 menu()
