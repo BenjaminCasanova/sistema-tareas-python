@@ -1,11 +1,10 @@
-
-
-
 tareas = []
 
+
+# Función para agregar una tarea
 def agregar_tarea():
 
-    nombre = input("Ingrese el nombre de la tarea: ").strip()
+    nombre = input("\nIngrese el nombre de la tarea: ").strip()
 
     if nombre == "":
         print("El nombre de la tarea no puede estar vacio.")
@@ -18,50 +17,76 @@ def agregar_tarea():
 
     tareas.append(tarea)
 
-    print("La tarea fue agregada correctamente.")
+    print("Tarea agregada correctamente.")
 
-# Función para listar tareas
+
 def listar_tareas():
 
     if len(tareas) == 0:
         print("\nNo existen tareas registradas.")
         return
 
-    print("\n========== TAREASS ==========")
+    print("\n= TAREAS =")
 
-    for i in range(len(tareas)):
-        print(f"{i+1}. {tareas[i]['nombre']} - {tareas[i]['estado']}")
+    for i, tarea in enumerate(tareas):
+        print(f"{i + 1}. {tarea['nombre']} - {tarea['estado']}")
 
-# Menú principal
+
+
+def completar_tarea():
+
+    if len(tareas) == 0:
+        print("\nNo existen tareas para completar.")
+        return
+
+    listar_tareas()
+
+    try:
+
+        numero = int(input("\nSeleccione el número de la tarea: "))
+
+        if numero < 1 or numero > len(tareas):
+            print("Número de tarea inválido.")
+            return
+
+        tareas[numero - 1]["estado"] = "Completada"
+
+        print("La tarea fue marcada como completada.")
+
+    except ValueError:
+        print("Debe ingresar un número válido.")
+
+
 def menu():
 
     while True:
 
-        print("\n===================================")
-        print(" SISTEMA DE REGISTRO DE TAREAS")
-        print("===================================")
+        print("\n========================================")
+        print("   SISTEMA DE REGISTRO DE TAREAS")
+        print("========================================")
         print("1. Agregar tarea")
         print("2. Listar tareas")
-        print("3. Salir")
+        print("3. Marcar tarea como completada")
+        print("4. Salir")
 
-        opcion = input("Seleccione una opcion: ")
+        opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-
             agregar_tarea()
 
         elif opcion == "2":
-
             listar_tareas()
 
         elif opcion == "3":
+            completar_tarea()
 
-            print("Hasta luego.")
+        elif opcion == "4":
+            print("\nGracias por utilizar el sistema.")
             break
 
         else:
+            print("Opción inválida.")
 
-            print("Opción invalida.")
 
-# Inicio del programa
+
 menu()
