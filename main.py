@@ -1,4 +1,8 @@
+
+
+
 tareas = []
+
 
 
 # Función para agregar una tarea
@@ -7,7 +11,7 @@ def agregar_tarea():
     nombre = input("\nIngrese el nombre de la tarea: ").strip()
 
     if nombre == "":
-        print("El nombre de la tarea no puede estar vacio.")
+        print(" El nombre de la tarea no puede estar vacío.")
         return
 
     tarea = {
@@ -17,59 +21,72 @@ def agregar_tarea():
 
     tareas.append(tarea)
 
-    print("Tarea agregada correctamente.")
-
+    print("La tarea fue agregada correctamente.")
 
 def listar_tareas():
 
     if len(tareas) == 0:
-        print("\nNo existen tareas registradas.")
+        print("\n⚠ No existen tareas registradas.")
         return
 
-    print("\n= TAREAS =")
+    print("\n========== LISTA DE TAREAS ==========")
 
     for i, tarea in enumerate(tareas):
         print(f"{i + 1}. {tarea['nombre']} - {tarea['estado']}")
 
 
-
 def completar_tarea():
 
     if len(tareas) == 0:
-        print("\nNo existen tareas para completar.")
+        print("\n⚠ No existen tareas para completar.")
         return
 
     listar_tareas()
 
     try:
 
-        numero = int(input("\nSeleccione el número de la tarea: "))
+        numero = int(input("\nSeleccione el numero de la tarea: "))
 
         if numero < 1 or numero > len(tareas):
-            print("Número de tarea inválido.")
+            print(" Número de tarea invalido.")
             return
 
-        tareas[numero - 1]["estado"] = "Completada"
+        if tareas[numero - 1]["estado"] == "completada":
+            print("⚠ Esa tarea ya está completada.")
+            return
 
-        print("La tarea fue marcada como completada.")
+        tareas[numero - 1]["estado"] = "completada"
+
+        print("Tarea completada correctamente.")
 
     except ValueError:
-        print("Debe ingresar un número válido.")
+        print("Debe ingresar un numero válido.")
 
 
+def eliminar_tarea():
+
+    if len(tareas) == 0:
+        print("\n⚠ No existen tareas para eliminar.")
+        return
+
+    print("\n========== TAREASS ==========")
+
+    for i in range(len(tareas)):
+        print(f"{i+1}. {tareas[i]['nombre']} - {tareas[i]['estado']}")
+
+# Menú principal
 def menu():
 
     while True:
 
-        print("\n========================================")
-        print("   SISTEMA DE REGISTRO DE TAREAS")
-        print("========================================")
+        print("\n===================================")
+        print(" SISTEMA DE REGISTRO DE TAREAS")
+        print("===================================")
         print("1. Agregar tarea")
         print("2. Listar tareas")
-        print("3. Marcar tarea como completada")
-        print("4. Salir")
+        print("3. Salir")
 
-        opcion = input("Seleccione una opción: ")
+        opcion = input("Seleccione una opcion: ")
 
         if opcion == "1":
             agregar_tarea()
@@ -80,13 +97,13 @@ def menu():
         elif opcion == "3":
             completar_tarea()
 
-        elif opcion == "4":
-            print("\nGracias por utilizar el sistema.")
+            print("Hasta luego.")
             break
 
         else:
             print("Opción inválida.")
 
 
+            print("Opción invalida.")
 
 menu()
