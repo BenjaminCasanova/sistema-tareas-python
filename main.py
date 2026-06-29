@@ -1,32 +1,34 @@
+# Sistema de Registro de Tareas Personales
+# Tarea Finalizada - Evidencia 6
 
-
-
+# Lista donde se almacenan las tareas
 tareas = []
 
 
-
-# Función para agregar una tarea
+# Ffuncionn que permite agregar una nueva tarea
 def agregar_tarea():
 
     nombre = input("\nIngrese el nombre de la tarea: ").strip()
 
     if nombre == "":
-        print(" El nombre de la tarea no puede estar vacío.")
+        print("El nombre de la tarea no puede estar vacío.")
         return
 
     tarea = {
         "nombre": nombre,
-        "estado": "Pendiente"
+        "estado": "pendiente"
     }
 
     tareas.append(tarea)
 
-    print("La tarea fue agregada correctamente.")
+    print("Tarea agregada correctamente.")
 
+
+# Funcion que muestra todas las tareas registradas
 def listar_tareas():
 
     if len(tareas) == 0:
-        print("\n⚠ No existen tareas registradas.")
+        print("\nNo existen tareas registradas.")
         return
 
     print("\n========== LISTA DE TAREAS ==========")
@@ -35,10 +37,11 @@ def listar_tareas():
         print(f"{i + 1}. {tarea['nombre']} - {tarea['estado']}")
 
 
+# Funcion que cambia el estado de una tarea a completada
 def completar_tarea():
 
     if len(tareas) == 0:
-        print("\n⚠ No existen tareas para completar.")
+        print("\nNo existen tareas para completar.")
         return
 
     listar_tareas()
@@ -48,33 +51,47 @@ def completar_tarea():
         numero = int(input("\nSeleccione el numero de la tarea: "))
 
         if numero < 1 or numero > len(tareas):
-            print(" Número de tarea invalido.")
+            print("Número de tarea invalido.")
             return
 
-        if tareas[numero - 1]["estado"] == "completada":
-            print("⚠ Esa tarea ya está completada.")
+        if tareas[numero - 1]["estado"] == "Completada":
+            print("Esa tarea ya está completada.")
             return
 
-        tareas[numero - 1]["estado"] = "completada"
+        tareas[numero - 1]["estado"] = "Completada"
 
         print("Tarea completada correctamente.")
 
     except ValueError:
-        print("Debe ingresar un numero válido.")
+        print("Debe ingresar un número válido.")
 
 
+# Funcion que elimina una tarea de la lista
 def eliminar_tarea():
 
     if len(tareas) == 0:
-        print("\n⚠ No existen tareas para eliminar.")
+        print("\nNo existen tareas para eliminar.")
         return
 
-    print("\n========== TAREASS ==========")
+    listar_tareas()
 
-    for i in range(len(tareas)):
-        print(f"{i+1}. {tareas[i]['nombre']} - {tareas[i]['estado']}")
+    try:
 
-# Menú principal
+        numero = int(input("\nSeleccione el numero de la tarea que desea eliminar: "))
+
+        if numero < 1 or numero > len(tareas):
+            print("Número de tarea invalido.")
+            return
+
+        tarea = tareas.pop(numero - 1)
+
+        print(f"La tarea '{tarea['nombre']}' fue eliminada correctamente.")
+
+    except ValueError:
+        print("Debe ingresar un número válido.")
+
+
+# Funcion principal del sistema
 def menu():
 
     while True:
@@ -84,9 +101,11 @@ def menu():
         print("===================================")
         print("1. Agregar tarea")
         print("2. Listar tareas")
-        print("3. Salir")
+        print("3. Completar tarea")
+        print("4. Eliminar tarea")
+        print("5. Salir")
 
-        opcion = input("Seleccione una opcion: ")
+        opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
             agregar_tarea()
@@ -97,13 +116,15 @@ def menu():
         elif opcion == "3":
             completar_tarea()
 
+        elif opcion == "4":
+            eliminar_tarea()
+
+        elif opcion == "5":
             print("Hasta luego.")
             break
 
         else:
             print("Opción inválida.")
 
-
-            print("Opción invalida.")
 
 menu()
